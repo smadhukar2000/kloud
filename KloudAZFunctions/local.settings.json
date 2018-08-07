@@ -1,0 +1,6 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "ApiUrl": "https://kloudcodingtest.azurewebsites.net/api/cars"    
+  }
+}
