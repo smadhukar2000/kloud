@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DACLayer
+namespace KloudAZFunctions.Interfaces
 {
-    public class Class1
+    public interface ITransactionBL
     {
+        List<T> GetListOfModelsFromUri<T>(string uri);
     }
 }
+    
