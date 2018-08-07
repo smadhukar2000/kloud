@@ -13,27 +13,23 @@ using Microsoft.Azure.WebJobs.Host;
 
 namespace KloudAZFunctions
 {
-    public static class DisplayOwnerCars
+    public static class CarsApi
     {
-        [FunctionName("brandwithowners")]
+        [FunctionName("cars")]
         public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, 
             TraceWriter log)
         {
-
-            log.Info("C# HTTP trigger function processed a request.");
-            IDictionary<string, List<string>> orderedMap = null;
+            List<CarOwner> carOwners = new List<CarOwner>();
             try
             {
                 ITransactionBL transaction = new TransactionBL(new DACLayer.Implementations.DACLayer());
-                List<CarOwner> carOwners = transaction.GetListOfModelsFromUri<CarOwner>(AppSettingsEnv.Instance.ApiUrl);
-                orderedMap = transaction.GetGroupedAndOrderedData(carOwners);
+                carOwners = transaction.GetListOfModelsFromUri<CarOwner>(AppSettingsEnv.Instance.ApiUrl);
+                return req.CreateResponse(HttpStatusCode.OK, carOwners, GenericHelper.GetJsonMediaTypeFormatter());
             }
             catch(Exception ex)
             {
                 return req.CreateResponse(HttpStatusCode.BadRequest, $"Exception - {ex.Message}");
             }
-            
-            return req.CreateResponse(HttpStatusCode.OK, orderedMap);
         }
     }
 }
