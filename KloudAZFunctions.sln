@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KloudAZFunctions", "KloudAZFunctions\KloudAZFunctions.csproj", "{A7DCF915-0DB5-42E4-B438-44D33F89B62C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KloudAZFunctions", "KloudAZFunctions\KloudAZFunctions.csproj", "{A7DCF915-0DB5-42E4-B438-44D33F89B62C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DACLayer", ".\DACLayer\DACLayer.csproj", "{BF26D9D3-A6AA-4EA0-9729-61D8F3016D8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DACLayer", "DACLayer\DACLayer.csproj", "{BF26D9D3-A6AA-4EA0-9729-61D8F3016D8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kloud.Models", "Kloud.Models\Kloud.Models.csproj", "{C98CBBE1-2675-43C1-828F-A5B74EEDF849}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BF26D9D3-A6AA-4EA0-9729-61D8F3016D8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF26D9D3-A6AA-4EA0-9729-61D8F3016D8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF26D9D3-A6AA-4EA0-9729-61D8F3016D8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98CBBE1-2675-43C1-828F-A5B74EEDF849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98CBBE1-2675-43C1-828F-A5B74EEDF849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98CBBE1-2675-43C1-828F-A5B74EEDF849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98CBBE1-2675-43C1-828F-A5B74EEDF849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
