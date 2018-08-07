@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Kloud.Models;
+using KloudAZFunctions.DI;
 using KloudAZFunctions.Implementations;
 using KloudAZFunctions.Interfaces;
 using Microsoft.Azure.WebJobs;
@@ -17,12 +18,11 @@ namespace KloudAZFunctions
     {
         [FunctionName("cars")]
         public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, 
-            TraceWriter log)
+            TraceWriter log, [Inject(typeof(ITransactionBL))]ITransactionBL transaction)
         {
             List<CarOwner> carOwners = new List<CarOwner>();
             try
             {
-                ITransactionBL transaction = new TransactionBL(new DACLayer.Implementations.DACLayer());
                 carOwners = transaction.GetListOfModelsFromUri<CarOwner>(AppSettingsEnv.Instance.ApiUrl);
                 return req.CreateResponse(HttpStatusCode.OK, carOwners, GenericHelper.GetJsonMediaTypeFormatter());
             }

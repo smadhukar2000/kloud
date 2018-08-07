@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Kloud.Models;
+using KloudAZFunctions.DI;
 using KloudAZFunctions.Implementations;
 using KloudAZFunctions.Interfaces;
 using Microsoft.Azure.WebJobs;
@@ -16,14 +17,13 @@ namespace KloudAZFunctions
     public static class DisplayOwnerCars
     {
         [FunctionName("brandwithowners")]
-        public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, 
-            TraceWriter log)
+        public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req,
+            TraceWriter log, [Inject(typeof(ITransactionBL))]ITransactionBL transaction)
         {
 
             log.Info("C# HTTP triggered function brandwithowners.");           
             try
             {
-                ITransactionBL transaction = new TransactionBL(new DACLayer.Implementations.DACLayer());
                 List<CarOwner> carOwners = transaction.GetListOfModelsFromUri<CarOwner>(AppSettingsEnv.Instance.ApiUrl);
                return req.CreateResponse(HttpStatusCode.OK, transaction.GetGroupedAndOrderedData(carOwners),
                    GenericHelper.GetJsonMediaTypeFormatter());
