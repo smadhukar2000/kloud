@@ -20,20 +20,18 @@ namespace KloudAZFunctions
             TraceWriter log)
         {
 
-            log.Info("C# HTTP trigger function processed a request.");
-            IDictionary<string, List<string>> orderedMap = null;
+            log.Info("C# HTTP triggered function brandwithowners.");           
             try
             {
                 ITransactionBL transaction = new TransactionBL(new DACLayer.Implementations.DACLayer());
                 List<CarOwner> carOwners = transaction.GetListOfModelsFromUri<CarOwner>(AppSettingsEnv.Instance.ApiUrl);
-                orderedMap = transaction.GetGroupedAndOrderedData(carOwners);
+               return req.CreateResponse(HttpStatusCode.OK, transaction.GetGroupedAndOrderedData(carOwners),
+                   GenericHelper.GetJsonMediaTypeFormatter());
             }
             catch(Exception ex)
             {
                 return req.CreateResponse(HttpStatusCode.BadRequest, $"Exception - {ex.Message}");
             }
-            
-            return req.CreateResponse(HttpStatusCode.OK, orderedMap);
         }
     }
 }

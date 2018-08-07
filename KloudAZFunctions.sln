@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DACLayer", "DACLayer\DACLay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kloud.Models", "Kloud.Models\Kloud.Models.csproj", "{C98CBBE1-2675-43C1-828F-A5B74EEDF849}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KloudAZFunctionsTests", "KloudAZFunctionsTests\KloudAZFunctionsTests.csproj", "{6C748B1D-581F-4BF3-B0BF-2750D343FD62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C98CBBE1-2675-43C1-828F-A5B74EEDF849}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C98CBBE1-2675-43C1-828F-A5B74EEDF849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C98CBBE1-2675-43C1-828F-A5B74EEDF849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C748B1D-581F-4BF3-B0BF-2750D343FD62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C748B1D-581F-4BF3-B0BF-2750D343FD62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C748B1D-581F-4BF3-B0BF-2750D343FD62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C748B1D-581F-4BF3-B0BF-2750D343FD62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
