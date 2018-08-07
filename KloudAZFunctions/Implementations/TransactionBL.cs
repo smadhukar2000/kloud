@@ -23,34 +23,19 @@ namespace KloudAZFunctions.Implementations
             {
                 throw new ArgumentNullException("No  model data exist");
             }
-            SortedDictionary<string, List<Tuple<string, Car>>> mapBrands = new SortedDictionary<string, List<Tuple<string, Car>>>();
 
-            // get grouped car with owner details and color
-            foreach (CarOwner co in models)
-            {
-                var carGroups = co.Cars.GroupBy(car => car.Brand);
-                foreach (IGrouping<string, Car> carGroup in carGroups)
-                {
-                    var cars = carGroup.ToList();
-                    // if key not exist, create new brand entry 
-                    if (!mapBrands.ContainsKey(carGroup.Key))
-                    {
-                        mapBrands[carGroup.Key] = new List<Tuple<string, Car>>();
-                    }
-                    foreach (Car c in cars)
-                    {
-                        mapBrands[carGroup.Key].Add(new Tuple<string, Car>(co.Name, c));
-                    }
-                }
-            }
-
+            // result dictionary
             IDictionary<string, List<string>> result = new Dictionary<string, List<string>>();
-            // sort owner name by car color
-            foreach (var mapBrand in mapBrands)
+
+            // group by brnad and order by brand name Alphabetically
+            var groups = models.SelectMany(co => co.Cars, (co, car) => new { co.Name, car })
+                .GroupBy(pair => pair.car.Brand).OrderBy(group => group.Key);
+            // extract owner names in Alphabetically
+            foreach (var group in groups)
             {
-                var sortedList = mapBrand.Value.OrderBy(t => t.Item2.Colour).Select(tuple => tuple.Item1).Distinct().ToList();
-                result[mapBrand.Key] = sortedList;
-            }         
+                List<string> names = group.ToList().OrderBy(c => c.car.Colour).Select(p => p.Name).Distinct().ToList<string>();
+                result[group.Key] = names;
+            }
           
             return result;
         }
