@@ -16,6 +16,7 @@ I have published live Logical App in Azure, those can be accessed from below URL
 
 End Points
 https://functions-khub.azurewebsites.net/api/cars  - API
+
 https://functions-khub.azurewebsites.net/api/brandwithowners - Consuming the api
 
 As of now both Azure functions display output in JSON format only. 
