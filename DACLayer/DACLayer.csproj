@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpClientSingleton.cs" />
     <Compile Include="Implementations\DACLayer.cs" />
     <Compile Include="Interfaces\IDACLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

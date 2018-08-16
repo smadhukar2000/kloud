@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DACLayer.Interfaces;
@@ -90,10 +89,12 @@ namespace KloudAZFunctionsTests
             ITransactionBL transaction = new TransactionBL(_mock.Object);
 
             //Act
-            List<CarOwner>  actual = transaction.GetListOfModelsFromUri<CarOwner>(string.Empty);
+            Task<List<CarOwner>> task = Task.Run(async () => await transaction.GetListOfModelsFromUriAsync<CarOwner>(string.Empty));
+            task.Wait();
 
+            List<CarOwner> actual = task.Result;
             //Assert
-            for(int i = 0; i < actual.Count; ++i)
+            for (int i = 0; i < actual.Count; ++i)
             {
                 Assert.AreEqual(expected[i].Name, actual[i].Name);
                 for (int x = 0; x < actual[i].Cars.Count; ++x)
