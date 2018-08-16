@@ -24,6 +24,8 @@ namespace KloudAZFunctions.Implementations
                 throw new ArgumentNullException("No  model data exist");
             }
 
+            models = models.Where(m => !string.IsNullOrEmpty(m.Name)).ToList();
+
             // result dictionary
             IDictionary<string, List<string>> result = new Dictionary<string, List<string>>();
 
@@ -40,7 +42,7 @@ namespace KloudAZFunctions.Implementations
             return result;
         }
 
-        public List<T> GetListOfModelsFromUri<T>(string uri)
+        public async Task<List<T>> GetListOfModelsFromUriAsync<T>(string uri)
         {
             List<T> models = new List<T>();
             try
@@ -50,11 +52,11 @@ namespace KloudAZFunctions.Implementations
                     throw new ArgumentNullException("DACLayer object is null");
                 }
                 // invoke ASYNC api
-                Task<string> task = dacLayer.GetDataFromUriAsync(uri);
+                string result = await dacLayer.GetDataFromUriAsync(uri);
                 // wait till result is ready
-                task.Wait();
+                //task.Wait();
                 // convert json into workable models i.e. CarOwner
-                models = JsonConvert.DeserializeObject<List<T>>(task.Result);
+                models = JsonConvert.DeserializeObject<List<T>>(result);
             }
             catch(Exception)
             {
